@@ -32,17 +32,7 @@ body{
     align-items: center;
     padding: 0 30px;
 }
-.year-box{
-    background-color:lightgrey;
-    border:1px solid black;
-    margin: 5px 1px;
-    margin-bottom: 0px;
-    width:348px;
-    justify-content: space-between;
-}
-.year {
-    padding:0 20px;
-}
+
 .arrow {
   border: solid black;
   border-width: 0 2px 2px 0;
@@ -51,47 +41,20 @@ body{
    transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
-.bottom-box {
+.branch-box {
     background-color:#001732;
     justify-content: space-between;
-    position: fixed;
-    bottom:0px;
     height: 50px;
+    margin:20px 0;
 }
 .branch {
-    color:white;
-    opacity: .5;
-}
-.semester-container{
-    display: flex;
-    flex-direction: row;
-    margin:0 1px;
-    display:none;
-}
-.semester {
-    background-color: hsl(0, 0%, 93%);
-    justify-content: center;
-    border:1px solid black;
-    border-top: 0;
+    color:hsl(0, 0%, 50%);
+    height: 100%;
+    line-height: 50px;
     text-align: center;
-    height:0px;
-}
-@keyframes dropdown {
-    from {height:0;
-    }
-    to {
-        height:50px;
-    }
-}
-.animate{
-    animation-name: dropdown;
-    animation-duration: .4s;
-    animation-fill-mode: forwards;
-}
-
-.flex {
-    display:flex;
-}
-.none{
-    display:none;
+    width:50px;
+ }
+.selected {
+    background-color: #006FF2;
+    color:white;
 }
