@@ -74,10 +74,10 @@ body{
     border:1px solid black;
     border-top: 0;
     text-align: center;
-    height:20px;
+    height:0px;
 }
 @keyframes dropdown {
-    from {height:20;
+    from {height:0;
     }
     to {
         height:50px;
