@@ -1,0 +1,50 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+}
+@font-face {
+    font-family: "RopaSans";
+    src: url("./assets/RopaSans-Regular.ttf") format("truetype");
+}
+body{
+    height:400px;
+    width:350px;
+    font-family: RopaSans;
+}
+
+.seperator {
+    height: 3px;
+    width:100%;
+    background-color: #001732;
+}
+.box {
+    width:100%;
+    height:40px;
+    display:flex;
+    align-items: center;
+    padding: 0 30px;
+}
+.year-box{
+    background-color:lightgrey;
+    border:1px solid black;
+    margin: 5px 0;
+    justify-content: space-between;
+}
+.arrow {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+   transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+.bottom-box {
+    background-color:#001732;
+    justify-content: space-between;
+}
+.branch {
+    color:white;
+    opacity: .5;
+}
