@@ -85,7 +85,7 @@ body{
 }
 .animate{
     animation-name: dropdown;
-    animation-duration: .5s;
+    animation-duration: .4s;
     animation-fill-mode: forwards;
 }
 
