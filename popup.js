@@ -8,6 +8,10 @@ function selected() {
         }
     })
     this.classList.toggle("selected");
+    attlist=document.querySelector(".bottom-box-right").classList;
+    if (document.querySelectorAll(".selected").length == 2 && attlist[attlist.length-1] !='white') {
+        attlist.toggle("white");
+    }
 }
 branchList.forEach(
     (e,i) => {

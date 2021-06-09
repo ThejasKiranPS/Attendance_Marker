@@ -56,6 +56,7 @@ body{
 .sem-box-container {
     display:flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }  
 .sem-box {
     flex:1;
@@ -84,6 +85,7 @@ body{
     background-color: #006FF2;
     color:white;
     justify-content: center;
+    color:hsl(0, 0%, 50%);
 }
 .bottom-arrow {
     margin-left: 10px;
@@ -94,5 +96,8 @@ body{
 }
 .selected {
     background-color: #006FF2;
+    color:white;
+}
+.white {
     color:white;
 }
