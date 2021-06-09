@@ -53,10 +53,6 @@ body{
     text-align: center;
     width:50px;
  }
-.selected {
-    background-color: #006FF2;
-    color:white;
-}
 .sem-box-container {
     display:flex;
     justify-content: space-evenly;
@@ -71,6 +67,7 @@ body{
     flex-basis: 60px;
     color:hsl(0, 0%, 50%);
     margin: 10px 10px;
+    font-size: 22px;
 }
 .bottom-box-container {
     display:flex;
@@ -94,4 +91,8 @@ body{
 .bottom-box-left {
     justify-content: center;
     color: white;
+}
+.selected {
+    background-color: #006FF2;
+    color:white;
 }
