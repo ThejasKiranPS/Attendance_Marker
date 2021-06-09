@@ -9,7 +9,6 @@
     src: url("./assets/RopaSans-Regular.ttf") format("truetype");
 }
 body{
-    height:400px;
     width:350px;
     font-family: RopaSans;
     font-size:18px;
@@ -34,18 +33,18 @@ body{
 }
 
 .arrow {
-  border: solid black;
+  border: solid rgb(255, 255, 255);
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 4px;
-   transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+   transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 .branch-box {
     background-color:#001732;
     justify-content: space-between;
     height: 50px;
-    margin:20px 0;
+    margin:30px 0;
 }
 .branch {
     color:hsl(0, 0%, 50%);
@@ -57,4 +56,42 @@ body{
 .selected {
     background-color: #006FF2;
     color:white;
+}
+.sem-box-container {
+    display:flex;
+    justify-content: space-evenly;
+}  
+.sem-box {
+    flex:1;
+    flex-grow: 0;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #001732;
+    flex-basis: 60px;
+    color:hsl(0, 0%, 50%);
+    margin: 10px 10px;
+}
+.bottom-box-container {
+    display:flex;
+    width:100%;
+    border: none;
+    margin-top: 40px;
+}
+.bottom-box {
+    margin:0;
+    padding:0;
+    display:flex;
+}
+.bottom-box-right {
+    background-color: #006FF2;
+    color:white;
+    justify-content: center;
+}
+.bottom-arrow {
+    margin-left: 10px;
+}
+.bottom-box-left {
+    justify-content: center;
+    color: white;
 }
