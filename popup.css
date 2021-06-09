@@ -12,6 +12,12 @@ body{
     height:400px;
     width:350px;
     font-family: RopaSans;
+    font-size:18px;
+}
+.heading {
+    font-size: 22px;
+    text-align: center;
+    padding-top:10px;
 }
 
 .seperator {
@@ -29,8 +35,13 @@ body{
 .year-box{
     background-color:lightgrey;
     border:1px solid black;
-    margin: 5px 0;
+    margin: 5px 1px;
+    margin-bottom: 0px;
+    width:348px;
     justify-content: space-between;
+}
+.year {
+    padding:0 20px;
 }
 .arrow {
   border: solid black;
@@ -43,8 +54,44 @@ body{
 .bottom-box {
     background-color:#001732;
     justify-content: space-between;
+    position: fixed;
+    bottom:0px;
+    height: 50px;
 }
 .branch {
     color:white;
     opacity: .5;
+}
+.semester-container{
+    display: flex;
+    flex-direction: row;
+    margin:0 1px;
+    display:none;
+}
+.semester {
+    background-color: hsl(0, 0%, 93%);
+    justify-content: center;
+    border:1px solid black;
+    border-top: 0;
+    text-align: center;
+    height:20px;
+}
+@keyframes dropdown {
+    from {height:20;
+    }
+    to {
+        height:50px;
+    }
+}
+.animate{
+    animation-name: dropdown;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+.flex {
+    display:flex;
+}
+.none{
+    display:none;
 }

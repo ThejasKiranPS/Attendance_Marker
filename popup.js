@@ -1,1 +1,1 @@
-console.log('tst');
+year=document.querySelector('.year-container')
