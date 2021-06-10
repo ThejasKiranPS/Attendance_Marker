@@ -1,5 +1,6 @@
 branchList= Array.from(document.querySelector(".branch-box").children);
 semList=Array.from(document.querySelectorAll(".sem-box-container"));
+
 function selected() {
     //clear
     Array.from(this.parentElement.children).forEach((e,i) => {
@@ -13,18 +14,21 @@ function selected() {
         attlist.toggle("white");
     }
 }
+
 branchList.forEach(
     (e,i) => {
         e.onclick=selected;
     }
 )
+
 semList.forEach(
     (e,i) => {
         Array.from(e.children).forEach((e,i) => {
             e.onclick=selected;
         })
     }
-    )
+)
+
 let fileName;
 function getData() {
     let data= document.querySelectorAll(".selected");
@@ -38,9 +42,20 @@ async function checkAttendance() {
     let [tab] = await chrome.tabs.query({active:true, currentWindow:true});
     chrome.scripting.executeScript({
         target: {tabId: tab.id},
-        function: doChecks,
+        function: getParticipants,
     });
 }
 function getParticipants() {
+    function listAll() {
+        pList=document.querySelector('[aria-label="Participants"]');
+        let list=[]
+        Array.from(pList.children).forEach((child,index) => {list.push(child.children[0].children[1].children[0].children[0].innerText);});
+        return list;
+    }
+    let data={};
+    data['participants']=listAll();
+    chrome.storage.sync.set(data);
+
 }
+
 checkAttendance();
