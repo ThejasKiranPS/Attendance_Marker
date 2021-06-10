@@ -15,5 +15,5 @@ function getParticipants() {
     let data={};
     data['participants']=listAll();
     chrome.storage.sync.set(data);
-
 }
+checkAttendance();
