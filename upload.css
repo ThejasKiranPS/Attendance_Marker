@@ -1,0 +1,38 @@
+.upload-form {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    
+}
+@font-face {
+    font-family: "RopaSans";
+    src: url("./assets/RopaSans-Regular.ttf") format("truetype");
+}
+* {
+    font-family: RopaSans;
+}
+body {
+    font-size: 20px;
+    height:397px;
+    width:350px;
+}
+#ibtn-upload {
+    width:100px;
+    height:40px;
+    background-color: #006FF2;
+    color:hsl(0, 0%, 100%);
+    border: none;
+}
+p {
+    display:inline;
+
+}
+.heading {
+    display:flex;
+    justify-content: center;
+}
+.fileName {
+    padding-left: 8px;
+}
