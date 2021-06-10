@@ -1,6 +1,6 @@
 let fileName=localStorage.getItem("fileName");
 let dbName=fileName;
-let branchName= fileName.substring(1,fileName.length-2).toUpperCase();
+let branchName= fileName.substring(0,fileName.length-2).toUpperCase();
 let semName= fileName.substring(fileName.length-2);
 fileName=' '+branchName+ ' ' + semName;
 document.querySelector(".fileName").innerText=fileName;
