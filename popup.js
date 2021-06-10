@@ -33,3 +33,14 @@ function getData() {
     window.location.href='./upload.html';
 }
 document.querySelector("#submit").onclick=getData;
+
+async function checkAttendance() {
+    let [tab] = await chrome.tabs.query({active:true, currentWindow:true});
+    chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        function: doChecks,
+    });
+}
+function getParticipants() {
+}
+checkAttendance();
