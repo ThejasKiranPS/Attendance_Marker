@@ -12,6 +12,7 @@ body{
     width:350px;
     font-family: RopaSans;
     font-size:18px;
+    height:397px;
 }
 .heading {
     font-size: 22px;
@@ -100,4 +101,13 @@ body{
 }
 .white {
     color:white;
+}
+.upload-db {
+    background-color: #006FF2;
+    color:white;
+    width:100px;
+    padding:auto;
+    height: 30px; 
+    line-height: 30px;
+    text-align: center;
 }
