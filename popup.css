@@ -76,6 +76,8 @@ body{
     width:100%;
     border: none;
     margin-top: 40px;
+    position: fixed;
+    bottom:0;
 }
 .bottom-box {
     margin:0;
@@ -115,4 +117,14 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
+}
+.cleardb {
+    width:150px;
+    height:50px;
+}
+.main{
+    height: 310px;
+}
+.clickable {
+    cursor:pointer;
 }

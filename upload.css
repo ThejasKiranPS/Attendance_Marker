@@ -36,3 +36,15 @@ p {
 .fileName {
     padding-left: 8px;
 }
+.border {
+    border:1px solid black;
+}
+.bottom {
+    position:fixed;
+    top:450px;
+    height: min-content;
+    color:black;
+}
+.clickable {
+    cursor:pointer;
+}

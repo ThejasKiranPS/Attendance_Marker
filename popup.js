@@ -37,3 +37,6 @@ function getData() {
     window.location.href='./checkdata.html';
 }
 document.querySelector("#submit").onclick=getData;
+document.querySelector(".settings").onclick=() => {
+    window.location.href='./settings.html';
+};
