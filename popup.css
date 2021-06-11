@@ -111,3 +111,8 @@ body{
     line-height: 30px;
     text-align: center;
 }
+.center {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
