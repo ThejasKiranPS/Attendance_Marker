@@ -50,4 +50,21 @@ function getAbs(students, participants) {
   });
   console.log(absent);
   console.log(notRecognised);
+
+
+  let absentees='';
+  absent.forEach((student) => {
+    absentees+= `<div class="box item-box">${student[0]}</div>`;
+  })
+  let notRs='';
+  notRecognised.forEach((student) => {
+    notRs+= `<div class="box item-box">${student[0]}</div>`;
+
+  })
+  document.querySelector(".notR").innerHTML+=notRs;
+  document.querySelector(".absent").innerHTML+=absentees;
+
+  document.querySelector(".acount").innerHTML+=' ( '+absent.length + ' )';
+  document.querySelector(".ncount").innerHTML+=' ( '+notRecognised.length + ' )';
+
 }
