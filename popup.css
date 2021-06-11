@@ -124,7 +124,9 @@ body{
     width:150px;
     height:50px;
 }
-.main{
+.main-s{
+    display:flex;
+    flex-direction: column;
     height: 310px;
 }
 .clickable {
@@ -137,4 +139,7 @@ body{
 }
 .increase-height{
     height: 60px;
+}
+.no-display {
+    display:none;
 }

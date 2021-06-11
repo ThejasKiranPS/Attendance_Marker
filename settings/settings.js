@@ -21,10 +21,9 @@ function cleardb() {
                     console.log(datat);
                 })
             });
-            console.log('db cleared');
-            console.log(branch,s);
         }
     })
+    document.querySelector('.feedback').classList.toggle('no-display');
 }
 document.querySelector('.cleardb').onclick = cleardb;
 document.querySelector('.goback').onclick = () => {
