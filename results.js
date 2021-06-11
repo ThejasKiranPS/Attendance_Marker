@@ -58,7 +58,7 @@ function getAbs(students, participants) {
   })
   let notRs='';
   notRecognised.forEach((student) => {
-    notRs+= `<div class="box item-box">${student[0]}</div>`;
+    notRs+= `<div class="box item-box">${student}</div>`;
 
   })
   document.querySelector(".notR").innerHTML+=notRs;
