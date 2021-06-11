@@ -1,6 +1,6 @@
 async function checkAttendance() {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  chrome.scripting.executeScript({
+  await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     function: getParticipants,
   });
@@ -20,8 +20,12 @@ function getParticipants() {
   let data = {};
   data["participants"] = listAll();
   chrome.storage.sync.set(data);
+  console.log(data);
+  console.log('data saved');
 }
-checkAttendance();
+
+checkAttendance().then(() => {
+
 
 let dbName = localStorage.getItem("fileName");
 chrome.storage.sync.get(`${dbName}`, (data) => {
@@ -68,3 +72,4 @@ function getAbs(students, participants) {
   document.querySelector(".ncount").innerHTML+=' ( '+notRecognised.length + ' )';
 
 }
+});
