@@ -40,3 +40,21 @@ document.querySelector("#submit").onclick=getData;
 document.querySelector(".settings").onclick=() => {
     window.location.href='./settings/settings.html';
 };
+
+function moreb() {
+    console.log('test');
+    let morelist=['ChE','PE','AE','BE'];
+    let branchBox=document.querySelector(".branch-box");
+    branchBox.children[5].remove();
+    morelist.forEach((b) => {
+        branchBox.innerHTML+=`<div class="branch clickable">${b}</div>`;
+    });
+    branchBox.classList.toggle('increase-height');
+    branchList= Array.from(document.querySelector(".branch-box").children);
+    branchList.forEach(
+        (e,i) => {
+            e.onclick=selected;
+        }
+    )
+}
+document.querySelector(".moreb").onclick=moreb;

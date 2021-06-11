@@ -46,6 +46,7 @@ body{
     justify-content: space-between;
     height: 50px;
     margin:30px 0;
+    overflow-x:auto;
 }
 .branch {
     color:hsl(0, 0%, 50%);
@@ -53,6 +54,7 @@ body{
     line-height: 50px;
     text-align: center;
     width:50px;
+    flex-shrink: 0;
  }
 .sem-box-container {
     display:flex;
@@ -127,4 +129,12 @@ body{
 }
 .clickable {
     cursor:pointer;
+}
+.moreb {
+    width:20px;
+    text-align: center;
+    color:hsl(0, 0%, 85%);
+}
+.increase-height{
+    height: 60px;
 }
