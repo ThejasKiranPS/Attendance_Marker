@@ -76,7 +76,7 @@ function getAbs(students, participants) {
     absentees+= `<div class="box item-box">${student[0]}</div>`;
   })
   present.forEach((student) => {
-    presents+= `<div class="box item-box">${student[0]}</div>`;
+    presents+= `<div class="box item-box">${student}</div>`;
   })
   let notRs='';
   notRecognised.forEach((student) => {
@@ -86,7 +86,8 @@ function getAbs(students, participants) {
   document.querySelector(".notR").innerHTML+=notRs;
   document.querySelector(".absent").innerHTML+=absentees;
 
-  document.querySelector(".acount").innerHTML+=' ( '+absent.length + ' )';
+  document.querySelector(".abs-box").innerHTML+=' ( '+absent.length + ' )';
+  document.querySelector(".prs-box").innerHTML+=' ( '+present.length + ' )';
   document.querySelector(".ncount").innerHTML+=' ( '+notRecognised.length + ' )';
 
 }
@@ -94,8 +95,29 @@ function getAbs(students, participants) {
 
 function setAbs() {
   document.querySelector(".absent").innerHTML=absentees;
+  let absBtn=document.querySelector('.abs-box');
+  let prsBtn=document.querySelector('.prs-box');
+  if (Array.from(absBtn.classList).indexOf('rselect') != -1) {
+    return
+  }
+  else {
+    absBtn.classList.toggle('rselect');
+    prsBtn.classList.toggle('gselect');
+
+  }
 }
 function setPresent() {
-  document.querySelector(".present").innerHTML=presents;
+  document.querySelector(".absent").innerHTML=presents;
+  let absBtn=document.querySelector('.abs-box');
+  let prsBtn=document.querySelector('.prs-box');
+  if (Array.from(prsBtn.classList).indexOf('gselect') != -1) {
+    return
+  }
+  else {
+    absBtn.classList.toggle('rselect');
+    prsBtn.classList.toggle('gselect');
 
+  }
 }
+document.querySelector('.abs-box').onclick=setAbs;
+document.querySelector('.prs-box').onclick=setPresent;
