@@ -1,3 +1,8 @@
+let absentees='';
+let present=[];
+let presents='';
+
+
 async function checkAttendance() {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await chrome.scripting.executeScript({
@@ -40,25 +45,38 @@ chrome.storage.sync.get(`${dbName}`, (data) => {
 });
 
 
-
 function getAbs(students, participants) {
     let absent=[...students];
     let notRecognised=[...participants];
 
   students.forEach((sitem, index) => {
+      if(sitem[1]==undefined) {
+          item="";
+          if (sitem[0]=="") {
+            absent.splice(absent.indexOf(sitem), 1);
+          }
+      }
+      else {
       item=sitem[1].toLowerCase();
+      }
     if (participants.indexOf(item) != -1) {
+      present.push(sitem[0]);
       absent.splice(absent.indexOf(sitem), 1);
       notRecognised.splice(notRecognised.indexOf(item), 1);
     }
   });
   console.log(absent);
   console.log(notRecognised);
+  console.log(present);
+  console.log('---------')
 
 
-  let absentees='';
+
   absent.forEach((student) => {
     absentees+= `<div class="box item-box">${student[0]}</div>`;
+  })
+  present.forEach((student) => {
+    presents+= `<div class="box item-box">${student[0]}</div>`;
   })
   let notRs='';
   notRecognised.forEach((student) => {
@@ -73,3 +91,11 @@ function getAbs(students, participants) {
 
 }
 });
+
+function setAbs() {
+  document.querySelector(".absent").innerHTML=absentees;
+}
+function setPresent() {
+  document.querySelector(".present").innerHTML=presents;
+
+}
