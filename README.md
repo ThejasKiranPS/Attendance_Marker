@@ -21,4 +21,5 @@ It will show students who are absent and names of people who isn't on the studen
 ## How to create csv file?
 
 1. Create a google sheet with 2 columns ⇒ name & gname. Where name is the name of student and gname is the name on their google account or GMeet
+![sample list](./assets/list_sample.jpg)
 2. Click File > Download > csv
