@@ -34,9 +34,9 @@ function getData() {
     let data= document.querySelectorAll(".selected");
     fileName= data[0].innerText.toLowerCase() + data[1].innerText;
     localStorage.setItem("fileName",fileName);
-    window.location.href='./checkdata.html';
+    window.location.href='./checkdata/checkdata.html';
 }
 document.querySelector("#submit").onclick=getData;
 document.querySelector(".settings").onclick=() => {
-    window.location.href='./settings.html';
+    window.location.href='./settings/settings.html';
 };

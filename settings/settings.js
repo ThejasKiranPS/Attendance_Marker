@@ -24,7 +24,7 @@ function cleardb() {
 }
 document.querySelector('.cleardb').onclick = cleardb;
 document.querySelector('.goback').onclick = () => {
-    window.location.href='./popup.html';
+    window.location.href='../popup.html';
 };
 document.querySelector('.bmac').onclick = () => {
     console.log('red');

@@ -8,7 +8,7 @@
 }
 @font-face {
     font-family: "RopaSans";
-    src: url("./assets/RopaSans-Regular.ttf") format("truetype");
+    src: url("../assets/RopaSans-Regular.ttf") format("truetype");
 }
 * {
     font-family: RopaSans;
