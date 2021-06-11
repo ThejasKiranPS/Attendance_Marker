@@ -5,8 +5,7 @@ A Chrome extension which allows you to take attendance for college classes.
 ![home](./assets/Home.jpg)
 ___
 
-
-![result](./assets/present.png) 
+![result](./assets/absent.jpg) < > ![result](./assets/present.jpg) 
 ___
 ## How to install?
 1. Clone this repository or download as zip by clicking green coloured 'code' button

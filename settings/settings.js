@@ -4,7 +4,11 @@ function cleardb() {
         'me',
         'eee',
         'ece',
-        'ce'
+        'ce',
+        'ae',
+        'be',
+        'pe',
+        'che'
     ];
     let dbName='';
     let results={};
