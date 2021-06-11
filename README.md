@@ -1,7 +1,20 @@
 # Attendance marker (GMeet)
 
-A Chrome extension which allows you to take attendance for college classes. 
+A Chrome extension which allows you to take attendance for college classes.
 
+![home](./assets/Home.jpg)
+___
+
+
+![result](./assets/present.png) 
+___
+## How to install?
+1. Clone this repository or download as zip by clicking green coloured 'code' button
+on top of this page and extract it
+2. Open chrome and go to settings > Extensions
+3. Click 'load unpacked' and select the folder you have downloaded
+4. Click extensions icon on top bar and pin Attendance Marker for easier access 
+ 
 ## How to use?
 
 1. You need to add the list of students (only for the first time) to take the attendance.
