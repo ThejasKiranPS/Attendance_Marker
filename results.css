@@ -1,0 +1,47 @@
+.box {
+    border:1px solid black;
+    width:100%;
+    display:flex;
+    padding:0;
+    flex-direction: column;
+    flex-basis: 40px !important; 
+    justify-content: center;
+    flex-shrink: 0; 
+}
+.tbox {
+    justify-content: center;
+    background-color: tomato;
+    color:black;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.result-container {
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.absent {
+    overflow-y: scroll;
+    height:100px;
+}
+.notR{
+    overflow-y: auto;
+    width:100%;
+    height:100%;
+
+}
+
+.absent{
+    overflow-y: auto;
+    width:100%;
+    height:100%;
+}
+.result-container{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100px;
+}
+.container{
+    flex:1;
+}
