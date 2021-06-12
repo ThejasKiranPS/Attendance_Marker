@@ -1,7 +1,7 @@
 {
     "manifest_version":3,
     "name":"Attendance Marker - Gmeet",
-    "version":"1.0.0",
+    "version":"1.1.0",
     "description":"Mark the attendance automatically from Google Meet",
     "icons":{},
     "permissions": [
