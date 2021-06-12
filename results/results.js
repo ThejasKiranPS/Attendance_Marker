@@ -14,6 +14,11 @@ async function checkAttendance() {
 function getParticipants() {
   function listAll() {
     pList = document.querySelector('[aria-label="Participants"]');
+    if(pList==null) {
+      alert('please open the list of students in google meet');
+      return
+    }
+    
     let list = [];
     Array.from(pList.children).forEach((child, index) => {
       list.push(
