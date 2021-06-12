@@ -8,9 +8,15 @@ ___
 ![result](./assets/absent.jpg) < > ![result](./assets/present.jpg) 
 ___
 ## How to install?
+#### From .crx file
+1. Click on the latest release (right side of this page)
+2. In the assets listed click 'attendanceMarker_gmeet.crx' which will start downloading the file
+3. Open chrome and go to Settings > Extensions and turn on developer mode
+4. Drag the downloaded crx file to the extensions page
+#### From source code
 1. Clone this repository or download as zip by clicking green coloured 'code' button
 on top of this page and extract it
-2. Open chrome and go to settings > Extensions
+2. Open chrome and go to settings > Extensions and turn on developer mode
 3. Click 'load unpacked' and select the folder you have downloaded
 4. Click extensions icon on top bar and pin Attendance Marker for easier access 
  
