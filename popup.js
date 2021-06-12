@@ -16,9 +16,11 @@ function selected() {
     if (Array.from(document.querySelectorAll('.selected')).length == 2) {
         let data= document.querySelectorAll(".selected");
         fileName= data[0].innerText.toLowerCase() + data[1].innerText;
+        localStorage.setItem("fileName",fileName);
+
 
         chrome.storage.sync.get(`${fileName}`, (data) => {
-            if (Object.keys(data[fileName]).length == 0) {
+            if (data[fileName] == undefined || Object.keys(data[fileName]).length == 0) {
                 document.querySelector('#submit').innerHTML='Upload <div class="arrow bottom-arrow"></div>';
                 document.querySelector('#submit').onclick=() => {     chrome.tabs.create({ url: chrome.runtime.getURL('../upload/upload.html') }) };
                 }
