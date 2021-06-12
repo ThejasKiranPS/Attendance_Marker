@@ -34,7 +34,7 @@ It will show students who are absent and names of people who isn't on the studen
 2. If you haven't uploaded any files before, you will see an upload button which will take you to a new tab. If you want to modify existing list read step 5
 3. Click on the upload file button and select the csv file you wish to upload 
 4. Click 'read csv'
-5. You can previously uploaded list by going to settings page and clicking 'clear database'. (Note that this will clear all the lists uploaded)
+5. You can delete previously uploaded list by going to settings page and clicking 'clear database'. (Note that this will clear all the lists uploaded)
 
 ## How to create csv file?
 
