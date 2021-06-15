@@ -73,28 +73,7 @@ function getAbs(students, participants) {
   console.log(absent);
   console.log(notRecognised);
   console.log(present);
-  console.log('---------')
-
-
-
-  absent.forEach((student) => {
-    absentees+= `<div class="box item-box">${student[0]}</div>`;
-  })
-  present.forEach((student) => {
-    presents+= `<div class="box item-box">${student}</div>`;
-  })
-  let notRs='';
-  notRecognised.forEach((student) => {
-    notRs+= `<div class="box item-box">${student}</div>`;
-
-  })
-  document.querySelector(".notR").innerHTML+=notRs;
-  document.querySelector(".absent").innerHTML+=absentees;
-
-  document.querySelector(".abs-box").innerHTML+=' ( '+absent.length + ' )';
-  document.querySelector(".prs-box").innerHTML+=' ( '+present.length + ' )';
-  document.querySelector(".ncount").innerHTML+=' ( '+notRecognised.length + ' )';
-
+  displayResults(absent, present, notRecognised);
 }
 });
 
@@ -126,3 +105,24 @@ function setPresent() {
 }
 document.querySelector('.abs-box').onclick=setAbs;
 document.querySelector('.prs-box').onclick=setPresent;
+
+function displayResults(absent, present, notRecognised) {
+  absent.forEach((student) => {
+    absentees += `<div class="box item-box">${student[0]}</div>`;
+  });
+  present.forEach((student) => {
+    presents += `<div class="box item-box">${student}</div>`;
+  });
+  let notRs = "";
+  notRecognised.forEach((student) => {
+    notRs += `<div class="box item-box">${student}</div>`;
+  });
+  document.querySelector(".notR").innerHTML += notRs;
+  document.querySelector(".absent").innerHTML += absentees;
+
+  //number of students
+  document.querySelector(".abs-box").innerHTML += " ( " + absent.length + " )";
+  document.querySelector(".prs-box").innerHTML += " ( " + present.length + " )";
+  document.querySelector(".ncount").innerHTML +=
+    " ( " + notRecognised.length + " )";
+}
