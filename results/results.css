@@ -63,3 +63,10 @@
     width: 100%;
     flex-shrink: 0;
 }
+
+.mark-attendance {
+    flex-grow: 1;
+    background-color:#FFFFC2;
+    color:black;
+    height:40px;
+}

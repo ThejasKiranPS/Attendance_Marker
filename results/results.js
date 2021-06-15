@@ -72,7 +72,10 @@ checkAttendance().then(() => {
     // console.log(present);
     // console.log('---------');
     displayResults(absent, present, notRecognised);
-    markAttendance(students,absent,dbName+'-record');
+    document.querySelector(".mark-attendance").onclick = () => {
+      markAttendance(students, absent, dbName + "-record");
+      document.querySelector(".mark-attendance").innerText='Marked';
+    };
   }
 });
 
@@ -127,7 +130,7 @@ function createcsvH(data) {
 }
 function fetchDate(length = "min") {
   const d = new Date();
-  if (length == 'min') {
+  if (length == "min") {
     return (
       d.getDate() + "-" + (parseInt(d.getMonth()) + 1) + "-" + d.getFullYear()
     );
@@ -147,27 +150,28 @@ function fetchDate(length = "min") {
 }
 function markAttendance(students, absent, dbName) {
   let attendance = getAttendance(students, absent);
-  chrome.storage.sync.get(dbName,(record) => {
-    if (Object.keys(record).length==0) {
-    console.log('adding');
-      newRecord(dbName,students);
+  chrome.storage.sync.get(dbName, (record) => {
+    if (Object.keys(record).length == 0) {
+      console.log("adding");
+      newRecord(dbName, students);
     }
-    updateRecord(dbName,attendance);
-    console.log('updated');
+    updateRecord(dbName, attendance);
+    console.log("updated");
     console.log(record);
-  })
+  });
 }
 
 function download(recordName) {
   var element = document.createElement("a");
-  let filename = recordName +'_'+ fetchDate("max") + ".csv";
-  chrome.storage.sync.get(recordName,(data) => {downloadRecord(data[recordName]);});
+  let filename = recordName + "_" + fetchDate("max") + ".csv";
+  chrome.storage.sync.get(recordName, (data) => {
+    downloadRecord(data[recordName]);
+  });
   function downloadRecord(record) {
-    let csvText=processCsv(record);
+    let csvText = processCsv(record);
     element.setAttribute(
       "href",
-      "data:text/plain;charset=utf-8," +
-        encodeURIComponent(csvText)
+      "data:text/plain;charset=utf-8," + encodeURIComponent(csvText)
     );
     element.setAttribute("download", filename);
     element.style.display = "none";
@@ -177,12 +181,12 @@ function download(recordName) {
   }
 }
 function processCsv(record) {
-  let csvText='';
-  csvText+=record.csvH;
+  let csvText = "";
+  csvText += record.csvH;
   for (const i in record) {
-    if (i!='csvH') {
-      csvText+='\n'+i+',';
-      csvText+=record[i].toString();
+    if (i != "csvH") {
+      csvText += "\n" + i + ",";
+      csvText += record[i].toString();
     }
   }
   return csvText;
@@ -208,21 +212,21 @@ function displayResults(absent, present, notRecognised) {
     " ( " + notRecognised.length + " )";
 }
 
-function newRecord(dbName,students) {
+function newRecord(dbName, students) {
   let csvH = createcsvH(students);
   let record = {};
   record[dbName] = { csvH: csvH };
   console.log(record);
-chrome.storage.sync.set(record);
-  console.log('added');
+  chrome.storage.sync.set(record);
+  console.log("added");
 }
 
 function updateRecord(dbName, attendance) {
   chrome.storage.sync.get(dbName, (recordData) => {
-    recordData=recordData[dbName];
+    recordData = recordData[dbName];
     let date = fetchDate();
-    date='19-9-2021';
-    recordData[date]=attendance;
+    date = "19-9-2021";
+    recordData[date] = attendance;
     let record = {};
     record[`${dbName}`] = recordData;
     chrome.storage.sync.set(record);
