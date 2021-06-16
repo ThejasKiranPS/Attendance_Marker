@@ -1,28 +1,5 @@
 function cleardb() {
-    let branches=[
-        'cse',
-        'me',
-        'eee',
-        'ece',
-        'ce',
-        'ae',
-        'be',
-        'pe',
-        'che'
-    ];
-    let dbName='';
-    let results={};
-    branches.forEach((branch) => {
-        for (let s=1;s<=8;s++) {
-            results={}
-            results[`${branch}s${s}`]={}; 
-            chrome.storage.sync.set(results,() => {
-                chrome.storage.sync.get(`${branch}s${s}`,(datat) => {
-                    console.log(datat);
-                })
-            });
-        }
-    })
+    chrome.storage.sync.clear();
     document.querySelector('.feedback').classList.toggle('no-display');
 }
 document.querySelector('.cleardb').onclick = cleardb;
