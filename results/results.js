@@ -100,7 +100,6 @@ function createcsvH(data) {
   return csvH;
 }
 function fetchDate(length = "min") {
-  return '2021-10-1';
   const d = new Date();
   if (length == "min") {
     return (
