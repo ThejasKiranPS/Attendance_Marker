@@ -1,6 +1,7 @@
 # Attendance marker (GMeet)
 
-A Chrome extension which allows you to take attendance for college classes.
+A Chrome extension which allows you to take attendance for college classes. It can record attendance daily for multiple classes and then allows you to download it 
+as a csv file.
 
 ![home](./assets/Home.jpg)
 ___
