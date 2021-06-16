@@ -93,7 +93,7 @@ function download(recordName) {
   var element = document.createElement("a");
   let filename = recordName + "_" + fetchDate("max") + ".csv";
   chrome.storage.sync.get(recordName, (data) => {
-    downloadRecord(data[recordName]);
+    downloadRecord(data[recordName]['data']);
   });
   function downloadRecord(record) {
     let csvText = processCsv(record);
@@ -112,7 +112,8 @@ function fetchDate(length = "min") {
   const d = new Date();
   if (length == "min") {
     return (
-      d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1) + "-" +d.getDate()
+       d.getDate()+ "-" + (parseInt(d.getMonth()) + 1) + "-" +d.getFullYear()
+
     );
   } else {
     return (
@@ -130,12 +131,10 @@ function fetchDate(length = "min") {
 }
 function processCsv(record) {
   let csvText = "";
-  csvText += record.csvH;
-  for (const i in record) {
-    if (i != "csvH") {
-      csvText += "\n" + i + ",";
-      csvText += record[i].toString();
-    }
-  }
+  console.log(record);
+  record.forEach((dataItem) => {
+    const key = Object.keys(dataItem)[0];
+    csvText+=key+','+ dataItem[key] + '\n';
+  })
   return csvText;
 }

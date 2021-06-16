@@ -92,7 +92,7 @@ function getAttendance(students, absent) {
 }
 
 function createcsvH(data) {
-  csvH = "name,";
+  csvH = "";
   data.forEach((value) => {
     csvH += value + ",";
   });
@@ -103,7 +103,7 @@ function fetchDate(length = "min") {
   const d = new Date();
   if (length == "min") {
     return (
-      d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1) + "-" +d.getDate()
+      d.getDate()+ "-" + (parseInt(d.getMonth()) + 1) + "-" +d.getFullYear()
     );
   } else {
     return (
@@ -122,6 +122,7 @@ function fetchDate(length = "min") {
 function markAttendance(students, absent, dbName) {
   let attendance = getAttendance(students, absent);
   chrome.storage.sync.get(dbName, (record) => {
+    console.log(record);
     if (Object.keys(record).length == 0) {
       //console.log("adding");
       newRecord(dbName, students);
@@ -216,19 +217,38 @@ function displayResults(dbName, students, absent, present, notRecognised) {
 function newRecord(dbName, students) {
   let csvH = createcsvH(students);
   let record = {};
-  record[dbName] = { csvH: csvH };
-  //console.log(record);
+  record[dbName] = {
+    data: [{ name: csvH }],
+    dateList: [],
+  };
+  console.log(record);
   chrome.storage.sync.set(record);
-  //////console.log("added");
+  console.log("added");
 }
 
 function updateRecord(dbName, attendance) {
   chrome.storage.sync.get(dbName, (recordData) => {
-    recordData = recordData[dbName];
+    let data = recordData[dbName]["data"];
+    let dateList = recordData[dbName]["dateList"];
     let date = fetchDate();
-    recordData[date] = attendance;
+    //recordData[date] = attendance;
+    console.log(dateList);
+    console.log(dateList[dateList.length - 1]);
+    console.log(dateList.length);
+    if (dateList[dateList.length - 1] != date || dateList.length == 0) {
+      dateList.push(date);
+      data.push({ [date]: attendance });
+    } else {
+      dateList.pop();
+      dateList.push(date);
+      data.pop();
+      data.push({ [date]: attendance });
+    }
     let record = {};
-    record[`${dbName}`] = recordData;
+    record[`${dbName}`] = {
+      data: data,
+      dateList: dateList,
+    };
     console.log(record);
     console.log("updated");
     chrome.storage.sync.set(record);
