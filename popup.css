@@ -96,7 +96,7 @@ body{
     margin-left: 10px;
 }
 .bottom-box-left {
-    justify-content: center;
+    justify-content: space-evenly;
     color: white;
 }
 .selected {

@@ -71,11 +71,9 @@ checkAttendance().then(() => {
     // console.log(notRecognised);
     // console.log(present);
     // console.log('---------');
-    displayResults(dbName,students,absent, present, notRecognised);
-
+    displayResults(dbName, students, absent, present, notRecognised);
   }
 });
-
 
 function getAttendance(students, absent) {
   let attendance = [];
@@ -102,10 +100,11 @@ function createcsvH(data) {
   return csvH;
 }
 function fetchDate(length = "min") {
+  return '2021-10-1';
   const d = new Date();
   if (length == "min") {
     return (
-      d.getDate() + "-" + (parseInt(d.getMonth()) + 1) + "-" + d.getFullYear()
+      d.getFullYear() + "-" + (parseInt(d.getMonth()) + 1) + "-" +d.getDate()
     );
   } else {
     return (
@@ -134,65 +133,35 @@ function markAttendance(students, absent, dbName) {
   });
 }
 
-function download(recordName) {
-  var element = document.createElement("a");
-  let filename = recordName + "_" + fetchDate("max") + ".csv";
-  chrome.storage.sync.get(recordName, (data) => {
-    downloadRecord(data[recordName]);
-  });
-  function downloadRecord(record) {
-    let csvText = processCsv(record);
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(csvText)
-    );
-    element.setAttribute("download", filename);
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
-}
-function processCsv(record) {
-  let csvText = "";
-  csvText += record.csvH;
-  for (const i in record) {
-    if (i != "csvH") {
-      csvText += "\n" + i + ",";
-      csvText += record[i].toString();
-    }
-  }
-  return csvText;
-}
-function displayResults(dbName,students,absent, present, notRecognised) {
-//console.log('--------');
-//console.log(absent,present,notRecognised);
-//console.log('--------');
+function displayResults(dbName, students, absent, present, notRecognised) {
+  //console.log('--------');
+  //console.log(absent,present,notRecognised);
+  //console.log('--------');
   function setActions() {
     //console.log('fncalled');
-    let abtns=document.querySelectorAll('.absent-container');
+    let abtns = document.querySelectorAll(".absent-container");
     Array.from(abtns).forEach((e) => {
-      e.onmouseover= () => {
-        e.children[1].classList.toggle('slide-show');
-      }
-      e.onmouseout= () => {
-        e.children[1].classList.toggle('slide-show');
-      }
-      e.children[1].onclick=() => {
-        const index=Array.from(abtns).indexOf(e);
+      e.onmouseover = () => {
+        e.children[1].classList.toggle("slide-show");
+      };
+      e.onmouseout = () => {
+        e.children[1].classList.toggle("slide-show");
+      };
+      e.children[1].onclick = () => {
+        const index = Array.from(abtns).indexOf(e);
         present.push(absent[index]);
-        absent.splice(index,1);
+        absent.splice(index, 1);
         //console.log(absent);
         //console.log(present);
-        displayResults(dbName,students,absent,present,notRecognised);
-      }
-    })
+        displayResults(dbName, students, absent, present, notRecognised);
+      };
+    });
   }
 
   //console.log('settingactions');
   //console.log(absent,present,notRecognised);
-  absentees='';
-  presents='';
+  absentees = "";
+  presents = "";
   absent.forEach((student) => {
     absentees += `<div class="absent-container clickable"><div class="box item-box">${student[0]}</div><div class="remove-container">delete</div></div>`;
   });
@@ -206,42 +175,43 @@ function displayResults(dbName,students,absent, present, notRecognised) {
   document.querySelector(".notR").innerHTML += notRs;
   setAbs();
   //number of students
-  document.querySelector(".abs-box").innerHTML = "Absent ( " + absent.length + " )";
-  document.querySelector(".prs-box").innerHTML = "Present ( " + present.length + " )";
+  document.querySelector(".abs-box").innerHTML =
+    "Absent ( " + absent.length + " )";
+  document.querySelector(".prs-box").innerHTML =
+    "Present ( " + present.length + " )";
   document.querySelector(".ncount").innerHTML =
     "Not Recognised ( " + notRecognised.length + " )";
   setActions();
 
-
-function setAbs() {
-  document.querySelector(".absent").innerHTML = absentees;
-  let absBtn = document.querySelector(".abs-box");
-  let prsBtn = document.querySelector(".prs-box");
-  if (Array.from(absBtn.classList).indexOf("rselect") != -1) {
-    return;
-  } else {
-    setActions();
-    absBtn.classList.toggle("rselect");
-    prsBtn.classList.toggle("gselect");
+  function setAbs() {
+    document.querySelector(".absent").innerHTML = absentees;
+    let absBtn = document.querySelector(".abs-box");
+    let prsBtn = document.querySelector(".prs-box");
+    if (Array.from(absBtn.classList).indexOf("rselect") != -1) {
+      return;
+    } else {
+      setActions();
+      absBtn.classList.toggle("rselect");
+      prsBtn.classList.toggle("gselect");
+    }
   }
-}
-function setPresent() {
-  document.querySelector(".absent").innerHTML = presents;
-  let absBtn = document.querySelector(".abs-box");
-  let prsBtn = document.querySelector(".prs-box");
-  if (Array.from(prsBtn.classList).indexOf("gselect") != -1) {
-    return;
-  } else {
-    absBtn.classList.toggle("rselect");
-    prsBtn.classList.toggle("gselect");
+  function setPresent() {
+    document.querySelector(".absent").innerHTML = presents;
+    let absBtn = document.querySelector(".abs-box");
+    let prsBtn = document.querySelector(".prs-box");
+    if (Array.from(prsBtn.classList).indexOf("gselect") != -1) {
+      return;
+    } else {
+      absBtn.classList.toggle("rselect");
+      prsBtn.classList.toggle("gselect");
+    }
   }
-}
-document.querySelector(".abs-box").onclick = setAbs;
-document.querySelector(".prs-box").onclick = setPresent;
-document.querySelector(".mark-attendance").onclick = () => {
-  markAttendance(students, absent, dbName + "-record");
-  document.querySelector(".mark-attendance").innerText='Marked';
-};
+  document.querySelector(".abs-box").onclick = setAbs;
+  document.querySelector(".prs-box").onclick = setPresent;
+  document.querySelector(".mark-attendance").onclick = () => {
+    markAttendance(students, absent, dbName + "-record");
+    document.querySelector(".mark-attendance").innerText = "Marked";
+  };
 }
 
 function newRecord(dbName, students) {
@@ -260,6 +230,8 @@ function updateRecord(dbName, attendance) {
     recordData[date] = attendance;
     let record = {};
     record[`${dbName}`] = recordData;
+    console.log(record);
+    console.log("updated");
     chrome.storage.sync.set(record);
   });
 }

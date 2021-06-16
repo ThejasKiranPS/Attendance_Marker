@@ -32,5 +32,4 @@ document.querySelector('.goback').onclick = () => {
 document.querySelector('.bmac').onclick = () => {
     console.log('red');
     chrome.tabs.create({ url:'https://github.com/ThejasKiranPS'});
-
 };
