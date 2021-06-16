@@ -31,7 +31,6 @@
     height:100%;
 
 }
-
 .absent{
     overflow-y: auto;
     width:100%;
@@ -69,4 +68,37 @@
     background-color:#FFFFC2;
     color:black;
     height:40px;
+}
+.remove-container{
+    border:1px solid black;
+    flex-grow: 1;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+}
+.absent-container {
+    display:flex;
+}
+.item-box {
+    flex-grow: 9;
+}
+@keyframes show{
+   from { 
+       transform: scaleX(0);
+       position: relative;
+       left:20px;
+       flex:.5;
+       flex-grow: 0;
+   }
+   to {
+    transform: scaleX(1);
+    position: relative;
+    flex:1;
+    left:0px;
+    flex-grow:1;
+   }
+}
+.slide-show {
+    display:flex;
 }

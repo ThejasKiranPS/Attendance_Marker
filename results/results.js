@@ -29,8 +29,8 @@ function getParticipants() {
   let data = {};
   data["participants"] = listAll();
   chrome.storage.sync.set(data);
-  console.log(data);
-  console.log("data saved");
+  ////console.log(data);
+  //console.log("data saved");
 }
 
 checkAttendance().then(() => {
@@ -39,8 +39,8 @@ checkAttendance().then(() => {
     let students = data[dbName];
     chrome.storage.sync.get("participants", (data1) => {
       let participants = [...new Set(data1["participants"])];
-      console.log(participants);
-      console.log(students);
+      ////console.log(participants);
+      //console.log(students);
       participants.forEach((item, index) => {
         participants[index] = item.toLowerCase();
       });
@@ -62,7 +62,7 @@ checkAttendance().then(() => {
         item = sitem[1].toLowerCase();
       }
       if (participants.indexOf(item) != -1) {
-        present.push(sitem[0]);
+        present.push(sitem);
         absent.splice(absent.indexOf(sitem), 1);
         notRecognised.splice(notRecognised.indexOf(item), 1);
       }
@@ -71,38 +71,11 @@ checkAttendance().then(() => {
     // console.log(notRecognised);
     // console.log(present);
     // console.log('---------');
-    displayResults(absent, present, notRecognised);
-    document.querySelector(".mark-attendance").onclick = () => {
-      markAttendance(students, absent, dbName + "-record");
-      document.querySelector(".mark-attendance").innerText='Marked';
-    };
+    displayResults(dbName,students,absent, present, notRecognised);
+
   }
 });
 
-function setAbs() {
-  document.querySelector(".absent").innerHTMLdbdata = absentees;
-  let absBtn = document.querySelector(".abs-box");
-  let prsBtn = document.querySelector(".prs-box");
-  if (Array.from(absBtn.classList).indexOf("rselect") != -1) {
-    return;
-  } else {
-    absBtn.classList.toggle("rselect");
-    prsBtn.classList.toggle("gselect");
-  }
-}
-function setPresent() {
-  document.querySelector(".absent").innerHTML = presents;
-  let absBtn = document.querySelector(".abs-box");
-  let prsBtn = document.querySelector(".prs-box");
-  if (Array.from(prsBtn.classList).indexOf("gselect") != -1) {
-    return;
-  } else {
-    absBtn.classList.toggle("rselect");
-    prsBtn.classList.toggle("gselect");
-  }
-}
-document.querySelector(".abs-box").onclick = setAbs;
-document.querySelector(".prs-box").onclick = setPresent;
 
 function getAttendance(students, absent) {
   let attendance = [];
@@ -152,12 +125,12 @@ function markAttendance(students, absent, dbName) {
   let attendance = getAttendance(students, absent);
   chrome.storage.sync.get(dbName, (record) => {
     if (Object.keys(record).length == 0) {
-      console.log("adding");
+      //console.log("adding");
       newRecord(dbName, students);
     }
     updateRecord(dbName, attendance);
-    console.log("updated");
-    console.log(record);
+    //console.log("updated");
+    //console.log(record);
   });
 }
 
@@ -191,41 +164,99 @@ function processCsv(record) {
   }
   return csvText;
 }
-function displayResults(absent, present, notRecognised) {
+function displayResults(dbName,students,absent, present, notRecognised) {
+//console.log('--------');
+//console.log(absent,present,notRecognised);
+//console.log('--------');
+  function setActions() {
+    //console.log('fncalled');
+    let abtns=document.querySelectorAll('.absent-container');
+    Array.from(abtns).forEach((e) => {
+      e.onmouseover= () => {
+        e.children[1].classList.toggle('slide-show');
+      }
+      e.onmouseout= () => {
+        e.children[1].classList.toggle('slide-show');
+      }
+      e.children[1].onclick=() => {
+        const index=Array.from(abtns).indexOf(e);
+        present.push(absent[index]);
+        absent.splice(index,1);
+        //console.log(absent);
+        //console.log(present);
+        displayResults(dbName,students,absent,present,notRecognised);
+      }
+    })
+  }
+
+  //console.log('settingactions');
+  //console.log(absent,present,notRecognised);
+  absentees='';
+  presents='';
   absent.forEach((student) => {
-    absentees += `<div class="box item-box">${student[0]}</div>`;
+    absentees += `<div class="absent-container clickable"><div class="box item-box">${student[0]}</div><div class="remove-container">delete</div></div>`;
   });
   present.forEach((student) => {
-    presents += `<div class="box item-box">${student}</div>`;
+    presents += `<div class="box item-box">${student[0]}</div>`;
   });
   let notRs = "";
   notRecognised.forEach((student) => {
     notRs += `<div class="box item-box">${student}</div>`;
   });
   document.querySelector(".notR").innerHTML += notRs;
-  document.querySelector(".absent").innerHTML += absentees;
-
+  setAbs();
   //number of students
-  document.querySelector(".abs-box").innerHTML += " ( " + absent.length + " )";
-  document.querySelector(".prs-box").innerHTML += " ( " + present.length + " )";
-  document.querySelector(".ncount").innerHTML +=
-    " ( " + notRecognised.length + " )";
+  document.querySelector(".abs-box").innerHTML = "Absent ( " + absent.length + " )";
+  document.querySelector(".prs-box").innerHTML = "Present ( " + present.length + " )";
+  document.querySelector(".ncount").innerHTML =
+    "Not Recognised ( " + notRecognised.length + " )";
+  setActions();
+
+
+function setAbs() {
+  document.querySelector(".absent").innerHTML = absentees;
+  let absBtn = document.querySelector(".abs-box");
+  let prsBtn = document.querySelector(".prs-box");
+  if (Array.from(absBtn.classList).indexOf("rselect") != -1) {
+    return;
+  } else {
+    setActions();
+    absBtn.classList.toggle("rselect");
+    prsBtn.classList.toggle("gselect");
+  }
+}
+function setPresent() {
+  document.querySelector(".absent").innerHTML = presents;
+  let absBtn = document.querySelector(".abs-box");
+  let prsBtn = document.querySelector(".prs-box");
+  if (Array.from(prsBtn.classList).indexOf("gselect") != -1) {
+    return;
+  } else {
+    absBtn.classList.toggle("rselect");
+    prsBtn.classList.toggle("gselect");
+  }
+}
+document.querySelector(".abs-box").onclick = setAbs;
+document.querySelector(".prs-box").onclick = setPresent;
+document.querySelector(".mark-attendance").onclick = () => {
+  markAttendance(students, absent, dbName + "-record");
+  document.querySelector(".mark-attendance").innerText='Marked';
+};
 }
 
 function newRecord(dbName, students) {
   let csvH = createcsvH(students);
   let record = {};
   record[dbName] = { csvH: csvH };
-  console.log(record);
+  //console.log(record);
   chrome.storage.sync.set(record);
-  console.log("added");
+  //////console.log("added");
 }
 
 function updateRecord(dbName, attendance) {
   chrome.storage.sync.get(dbName, (recordData) => {
     recordData = recordData[dbName];
     let date = fetchDate();
-    date = "19-9-2021";
     recordData[date] = attendance;
     let record = {};
     record[`${dbName}`] = recordData;
