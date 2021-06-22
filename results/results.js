@@ -70,7 +70,6 @@ checkAttendance().then(() => {
     // console.log(absent);
     // console.log(notRecognised);
     // console.log(present);
-    // console.log('---------');
     displayResults(dbName, students, absent, present, notRecognised);
   }
 });
@@ -122,7 +121,7 @@ function fetchDate(length = "min") {
 function markAttendance(students, absent, dbName) {
   let attendance = getAttendance(students, absent);
   chrome.storage.sync.get(dbName, (record) => {
-    console.log(record);
+    //console.log(record);
     if (Object.keys(record).length == 0) {
       //console.log("adding");
       newRecord(dbName, students);
@@ -134,9 +133,7 @@ function markAttendance(students, absent, dbName) {
 }
 
 function displayResults(dbName, students, absent, present, notRecognised) {
-  //console.log('--------');
   //console.log(absent,present,notRecognised);
-  //console.log('--------');
   function setActions() {
     //console.log('fncalled');
     let abtns = document.querySelectorAll(".absent-container");
@@ -148,6 +145,7 @@ function displayResults(dbName, students, absent, present, notRecognised) {
         e.children[1].classList.toggle("slide-show");
       };
       e.children[1].onclick = () => {
+        console.log('delete btn callled');
         const index = Array.from(abtns).indexOf(e);
         present.push(absent[index]);
         absent.splice(index, 1);
@@ -172,7 +170,7 @@ function displayResults(dbName, students, absent, present, notRecognised) {
   notRecognised.forEach((student) => {
     notRs += `<div class="box item-box">${student}</div>`;
   });
-  document.querySelector(".notR").innerHTML += notRs;
+  document.querySelector(".notR").innerHTML = notRs;
   setAbs();
   //number of students
   document.querySelector(".abs-box").innerHTML =
