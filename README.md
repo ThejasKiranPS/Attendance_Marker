@@ -51,6 +51,19 @@ upload the list.
 'clear database'. (Note that this will clear all the lists uploaded)
 
 ## How to create csv file?
+To create acceptable list of students follow any of the following methods.
+> Automaticaly create list with extension
+
+1. Open participants list in Google meet 
+2. Open extension and go to settings (left bottom) 
+3. Click 'Get Participants' Button
+
+A csv sheet will be downloaded which you can upload to the extension. 
+(If you have missed anyone add them to this downloaded list in the format shown below)
+
+<br/>
+
+> Manually creating list
 
 1. Create a google sheet with 2 columns ⇒ name & gname. Where name is the 
 name of student and gname is the name on their google account or GMeet
@@ -59,7 +72,7 @@ name of student and gname is the name on their google account or GMeet
 
 2. Click File > Download > csv
 
-## How to download?
+## How to download attendance sheet?
 
 1. Select the branch and sem in home page.
 2. Click Download icon on bottom left.
