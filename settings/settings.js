@@ -5,6 +5,7 @@ function cleardb() {
   else {
     let key = sBranch.value+sSem.value;
     chrome.storage.sync.remove(key);
+    chrome.storage.sync.remove(`${key}-record`);
   }
   document.querySelector(".feedback").classList.toggle("no-display");
 }
